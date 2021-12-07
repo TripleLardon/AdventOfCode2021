@@ -4,19 +4,22 @@
 import collections as c
 
 input = open("input","r")
-lines = input.readlines()
+lines = list(map(lambda x: x[:-1],input.readlines()))
 
-pos = []
-for l in lines[0][:-1]:
-    pos.append("")
+lenLine = len(lines[0])
 
-print(pos)
+def getInvertTab(tab):
+    pos = []
+    for l in range(lenLine):
+        pos.append("")
+    for line in tab:
+        for i in range(lenLine):
+            pos[i]+=line[i]
+    return pos
+ 
+print(getInvertTab(lines))
 
 
-for line in lines:
-    line = line[:-1]
-    for i in range(len(line)):
-        pos[i]+=line[i]
 
 gamma = ""
 for b in pos:
@@ -32,3 +35,4 @@ for b in gamma:
 part1 = int(gamma,2) * int(epsilon,2)
 
 print("Part 1: ",part1)
+
